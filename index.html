@@ -4,18 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#100e1c">
+<meta name="theme-color" content="#050b1c">
 <title>Mnar Hmdy | GNSS & Navigation Researcher</title>
 
 <style>
 :root {
-  --space: #100e1c;
-  --deep: #19172a;
-  --ivory: #f5ead9;
-  --gold: #dfbd8c;
-  --rose: #bd8995;
-  --cyan: #a6d5d8;
-  --muted: #b9afac;
+  --space: #050b1c;
+  --blue: #10264b;
+  --cyan: #91c9e8;
+  --white: #eaf4ff;
+  --muted: #a6b6cb;
 }
 
 * {
@@ -29,13 +27,11 @@ html {
 body {
   margin: 0;
   background: var(--space);
-  color: var(--ivory);
+  color: var(--white);
   font-family: Georgia, serif;
 }
 
-/* =========================
-   INTRO SCREEN
-========================= */
+/* INTRO */
 
 #intro {
   position: fixed;
@@ -46,11 +42,14 @@ body {
   justify-content: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 110%, #9a5b5940, transparent 48%),
-    radial-gradient(ellipse at 75% 25%, #54416c70, transparent 45%),
-    radial-gradient(ellipse at 15% 40%, #294b6b55, transparent 48%),
-    #080a17;
-  transition: opacity 1.4s ease, visibility 1.4s ease;
+    radial-gradient(ellipse at 50% 50%,
+      #10234a 0%, transparent 48%),
+    radial-gradient(ellipse at 15% 25%,
+      #123b68 0%, transparent 35%),
+    radial-gradient(ellipse at 85% 75%,
+      #182c59 0%, transparent 38%),
+    #050b1c;
+  transition: opacity 1s ease, visibility 1s ease;
 }
 
 #intro.done {
@@ -59,201 +58,150 @@ body {
   pointer-events: none;
 }
 
-/* Nebula */
+/* Blue nebula clouds */
 
 .nebula {
   position: absolute;
-  inset: -20%;
+  inset: -15%;
   background:
-    radial-gradient(ellipse at 50% 50%, #d9a76b25, transparent 35%),
-    radial-gradient(ellipse at 25% 70%, #a16b8c22, transparent 40%),
-    radial-gradient(ellipse at 80% 25%, #6576a822, transparent 40%);
-  filter: blur(55px);
+    radial-gradient(ellipse at 25% 30%,
+      #2766a344, transparent 27%),
+    radial-gradient(ellipse at 72% 65%,
+      #315b9b35, transparent 30%),
+    radial-gradient(ellipse at 48% 90%,
+      #17618a22, transparent 35%);
+  filter: blur(45px);
   animation: nebulaMove 18s ease-in-out infinite alternate;
 }
 
 @keyframes nebulaMove {
-  from {
-    transform: scale(.9) translate(-2%, 1%);
-  }
-  to {
-    transform: scale(1.15) translate(3%, -2%);
-  }
+  from { transform: scale(1) translate(-1%, 1%); }
+  to { transform: scale(1.12) translate(2%, -2%); }
 }
 
 /* Stars */
 
-.stars {
+.stars,
+.stars::before,
+.stars::after {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 8% 15%, #fff 90%, transparent),
-    radial-gradient(1px 1px at 22% 70%, #e9d1ad 90%, transparent),
-    radial-gradient(2px 2px at 42% 22%, #fff 90%, transparent),
-    radial-gradient(1px 1px at 68% 12%, #fff 90%, transparent),
-    radial-gradient(1px 1px at 83% 62%, #e6c5a0 90%, transparent),
-    radial-gradient(1px 1px at 93% 35%, #fff 90%, transparent),
-    radial-gradient(1px 1px at 55% 85%, #fff 90%, transparent),
-    radial-gradient(2px 2px at 15% 92%, #d6b6d5 90%, transparent);
-  opacity: .75;
-  animation: starGlow 7s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
-@keyframes starGlow {
+.stars {
+  background-image:
+    radial-gradient(1px 1px at 8% 18%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 18% 72%, #b8dcff 90%, transparent),
+    radial-gradient(2px 2px at 36% 24%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 62% 13%, #d5eaff 90%, transparent),
+    radial-gradient(1px 1px at 82% 38%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 92% 78%, #b8dcff 90%, transparent),
+    radial-gradient(2px 2px at 72% 88%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 44% 83%, #d5eaff 90%, transparent),
+    radial-gradient(1px 1px at 12% 48%, #fff 90%, transparent);
+  opacity: .75;
+  animation: starsTwinkle 5s ease-in-out infinite alternate;
+}
+
+.stars::before {
+  content: "";
+  background-image:
+    radial-gradient(1px 1px at 28% 12%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 54% 42%, #c5e2ff 90%, transparent),
+    radial-gradient(1px 1px at 88% 20%, #fff 90%, transparent),
+    radial-gradient(1px 1px at 7% 88%, #c5e2ff 90%, transparent),
+    radial-gradient(1px 1px at 67% 66%, #fff 90%, transparent);
+  opacity: .6;
+}
+
+@keyframes starsTwinkle {
   from { opacity: .45; }
   to { opacity: .9; }
 }
 
-/* Ambient light */
-
-.ambient {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: #bd856d;
-  opacity: .12;
-  filter: blur(110px);
-  left: 15%;
-  top: 15%;
-  animation: breathe 10s infinite alternate;
-}
-
-@keyframes breathe {
-  to {
-    transform: scale(1.4);
-    opacity: .24;
-  }
-}
-
-/* Sun ray */
-
-.sun-ray {
-  position: absolute;
-  width: 2px;
-  height: 120%;
-  left: 50%;
-  top: -10%;
-  transform: rotate(35deg);
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    #dfbd8c08,
-    #dfbd8c55,
-    #fff0d955,
-    #dfbd8c15,
-    transparent
-  );
-  filter: blur(8px);
-  opacity: .5;
-  animation: sunRay 9s ease-in-out infinite;
-}
-
-@keyframes sunRay {
-  0%, 100% {
-    opacity: .15;
-    transform: translateX(-100px) rotate(35deg);
-  }
-  50% {
-    opacity: .65;
-    transform: translateX(100px) rotate(35deg);
-  }
-}
-
-/* =========================
-   ASTRONAUT
-========================= */
+/* Astronaut */
 
 .astronaut {
   position: absolute;
   z-index: 2;
-  width: clamp(75px, 9vw, 115px);
-  top: 13%;
-  left: 12%;
+  width: clamp(90px, 10vw, 125px);
+  top: 12%;
+  left: 11%;
   overflow: visible;
-  filter: drop-shadow(0 0 22px #d9b98a44);
-  animation: weightless 16s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px #8fcfff33);
+  animation: weightless 14s ease-in-out infinite;
 }
 
 @keyframes weightless {
-  0%, 100% {
-    transform: translate(0, 0) rotate(-8deg);
-  }
-  25% {
-    transform: translate(16px, 12px) rotate(-3deg);
-  }
-  50% {
-    transform: translate(25px, -5px) rotate(5deg);
-  }
-  75% {
-    transform: translate(10px, -15px) rotate(0deg);
-  }
+  0%, 100% { transform: translate(0, 0) rotate(-7deg); }
+  25% { transform: translate(12px, 10px) rotate(-2deg); }
+  50% { transform: translate(20px, -5px) rotate(5deg); }
+  75% { transform: translate(8px, -12px) rotate(0deg); }
 }
 
-/* Hijab floating separately */
-
 .hijab-tail {
-  transform-origin: 90px 90px;
+  transform-origin: 95px 100px;
   animation: hijabFloat 5s ease-in-out infinite alternate;
 }
 
 @keyframes hijabFloat {
-  from {
-    transform: rotate(-4deg) translateY(0);
-  }
-  to {
-    transform: rotate(7deg) translateY(-7px);
-  }
+  from { transform: rotate(-3deg) translateY(0); }
+  to { transform: rotate(6deg) translateY(-6px); }
 }
 
-/* =========================
-   INTRO TEXT
-========================= */
+/* Intro typography */
 
 .intro-content {
   position: relative;
   z-index: 3;
-  width: min(520px, 85%);
+  width: min(560px, 88%);
   text-align: center;
   margin-top: 35px;
 }
 
 .intro-tag {
-  color: var(--gold);
+  color: #9bbbdc;
   font: 9px Arial, sans-serif;
   letter-spacing: 5px;
   opacity: 0;
-  animation: appear 1s .5s forwards;
+  animation: appear .8s .3s forwards;
 }
 
 .name {
   position: relative;
   display: block;
   width: fit-content;
-  margin: 22px auto 10px;
-  font-size: clamp(42px, 8vw, 72px);
+  margin: 24px auto 12px;
+  font-size: clamp(44px, 8vw, 76px);
   font-weight: normal;
   letter-spacing: 3px;
-  text-shadow: 0 0 25px #d9b98a33;
+  color: #e8f3ff;
+  text-shadow:
+    0 0 8px #c5e5ff,
+    0 0 22px #7bbcff88,
+    0 0 48px #4d91e566;
   overflow: hidden;
 }
+
+/* Name appears letter by letter */
 
 .name span {
   display: inline-block;
   opacity: 0;
-  transform: translateY(20px);
-  animation: letter .7s forwards;
+  transform: translateY(15px);
+  animation: letter .6s forwards;
 }
 
-.name span:nth-child(1) { animation-delay: .5s; }
-.name span:nth-child(2) { animation-delay: .62s; }
-.name span:nth-child(3) { animation-delay: .74s; }
-.name span:nth-child(4) { animation-delay: .86s; }
-.name span:nth-child(5) { animation-delay: .98s; }
-.name span:nth-child(6) { animation-delay: 1.1s; }
-.name span:nth-child(7) { animation-delay: 1.22s; }
-.name span:nth-child(8) { animation-delay: 1.34s; }
-.name span:nth-child(9) { animation-delay: 1.46s; }
+.name span:nth-child(1) { animation-delay: .25s; }
+.name span:nth-child(2) { animation-delay: .34s; }
+.name span:nth-child(3) { animation-delay: .43s; }
+.name span:nth-child(4) { animation-delay: .52s; }
+.name span:nth-child(5) { animation-delay: .61s; }
+.name span:nth-child(6) { animation-delay: .70s; }
+.name span:nth-child(7) { animation-delay: .79s; }
+.name span:nth-child(8) { animation-delay: .88s; }
+.name span:nth-child(9) { animation-delay: .97s; }
 
 @keyframes letter {
   to {
@@ -262,44 +210,45 @@ body {
   }
 }
 
-/* Light passing through name */
+/* One single light beam */
 
 .name::after {
   content: "";
   position: absolute;
-  top: -20%;
-  left: -45%;
-  width: 30%;
-  height: 140%;
+  top: -15%;
+  left: -50%;
+  width: 25%;
+  height: 130%;
   transform: skewX(-20deg);
   background: linear-gradient(
     90deg,
     transparent,
-    #fff2d566,
-    #e9c58d99,
+    #ffffffaa,
+    #d7efff,
     transparent
   );
-  animation: nameLight 5s 1.5s infinite;
+  filter: blur(3px);
+  animation: nameLight 4s 1.1s ease-in-out infinite;
 }
 
 @keyframes nameLight {
   0%, 100% {
-    left: -45%;
+    left: -50%;
     opacity: 0;
   }
-  25% { opacity: 1; }
+  20% { opacity: 1; }
   65% {
-    left: 115%;
+    left: 120%;
     opacity: 0;
   }
 }
 
 .intro-sub {
-  color: var(--cyan);
+  color: #9cc9e9;
   font: 11px Arial, sans-serif;
   letter-spacing: 3px;
   opacity: 0;
-  animation: appear 1s 1.8s forwards;
+  animation: appear .8s 1.3s forwards;
 }
 
 @keyframes appear {
@@ -309,44 +258,38 @@ body {
 .light-line {
   width: 0;
   height: 1px;
-  margin: 30px auto 18px;
+  margin: 28px auto 20px;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--rose),
-    var(--gold),
-    var(--cyan),
+    #6da9d9,
+    #d7efff,
+    #6da9d9,
     transparent
   );
-  box-shadow: 0 0 14px #d9b98a88;
-  animation: line 2.5s 1.5s forwards;
+  animation: line 1.5s 1.2s forwards;
 }
 
 @keyframes line {
-  to { width: 220px; }
+  to { width: 190px; }
 }
 
-/* Loading bar */
+/* Loading */
 
 .progress {
-  width: 180px;
+  width: 170px;
   height: 2px;
-  background: #ffffff20;
   margin: auto;
+  background: #ffffff20;
   overflow: hidden;
 }
 
 .progress-fill {
   width: 0;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--rose),
-    var(--gold),
-    var(--cyan)
-  );
-  box-shadow: 0 0 10px #dfbd8c88;
-  animation: load 6.5s linear forwards;
+  background: linear-gradient(90deg, #477eb7, #b8e4ff);
+  box-shadow: 0 0 9px #8bcaff;
+  animation: load 5s linear forwards;
 }
 
 @keyframes load {
@@ -354,19 +297,17 @@ body {
 }
 
 .loading-text {
-  margin-top: 13px;
+  margin-top: 12px;
+  color: #9aacc5;
   font: 9px Arial, sans-serif;
   letter-spacing: 2px;
-  color: var(--muted);
 }
 
-/* =========================
-   MAIN WEBSITE
-========================= */
+/* MAIN WEBSITE */
 
 #website {
   opacity: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity 1.2s ease;
 }
 
 #website.visible {
@@ -385,7 +326,7 @@ nav {
 .logo {
   letter-spacing: 3px;
   font-size: 15px;
-  color: var(--gold);
+  color: #9fc9ed;
 }
 
 nav a {
@@ -397,7 +338,7 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--gold);
+  color: #c4e5ff;
 }
 
 .hero {
@@ -409,23 +350,11 @@ nav a:hover {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 85% 50%, #55425330, transparent 38%);
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border: 1px solid #d9b98a18;
-  border-radius: 50%;
-  right: -100px;
-  top: 20%;
-  pointer-events: none;
+    radial-gradient(ellipse at 85% 50%, #1b467044, transparent 38%);
 }
 
 .hero-tag {
-  color: var(--gold);
+  color: #9fc9ed;
   font: 10px Arial, sans-serif;
   letter-spacing: 4px;
 }
@@ -434,10 +363,11 @@ nav a:hover {
   font-size: clamp(48px, 8vw, 86px);
   font-weight: normal;
   margin: 22px 0 8px;
+  color: #e8f3ff;
 }
 
 .hero h2 {
-  color: var(--cyan);
+  color: #9cc9e9;
   font: 15px Arial, sans-serif;
   letter-spacing: 2px;
   font-weight: normal;
@@ -449,8 +379,6 @@ nav a:hover {
   max-width: 520px;
   margin-top: 25px;
 }
-
-/* Content cards */
 
 .sections {
   padding: 70px 8%;
@@ -468,13 +396,13 @@ nav a:hover {
 }
 
 .section-card:hover {
-  border-color: #d9b98a77;
-  background: #d9b98a08;
+  border-color: #80b9e477;
+  background: #8fcfff09;
   transform: translateY(-4px);
 }
 
 .section-card small {
-  color: var(--gold);
+  color: #9fc9ed;
   font: 10px Arial, sans-serif;
   letter-spacing: 2px;
 }
@@ -493,14 +421,12 @@ nav a:hover {
 footer {
   padding: 30px 8%;
   text-align: center;
-  color: #8d858c;
+  color: #8799b1;
   border-top: 1px solid #ffffff12;
   font: 11px Arial, sans-serif;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:650px) {
   nav {
@@ -508,7 +434,7 @@ footer {
   }
 
   nav a {
-    margin-left: 9px;
+    margin-left: 8px;
     font-size: 10px;
   }
 
@@ -523,12 +449,12 @@ footer {
 
   .astronaut {
     left: 5%;
-    width: 85px;
-    top: 10%;
+    width: 82px;
+    top: 9%;
   }
 
   .intro-content {
-    margin-top: 70px;
+    margin-top: 65px;
   }
 
   .intro-tag {
@@ -539,8 +465,6 @@ footer {
     font-size: 44px;
   }
 }
-
-/* Respect reduced motion */
 
 @media(prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -554,160 +478,123 @@ footer {
 
 <body>
 
-<!-- INTRO -->
-
 <div id="intro">
 
   <div class="nebula"></div>
   <div class="stars"></div>
-  <div class="ambient"></div>
-  <div class="sun-ray"></div>
 
-  <!-- Anime astronaut, original SVG illustration -->
+  <!-- Astronaut illustration -->
 
   <svg class="astronaut"
-       viewBox="0 0 240 320"
+       viewBox="0 0 240 300"
        xmlns="http://www.w3.org/2000/svg"
-       aria-label="A floating anime astronaut">
+       aria-label="Floating astronaut wearing a hijab">
 
     <!-- Floating hijab fabric -->
     <g class="hijab-tail">
-      <path d="M95 77
-        C55 40 15 62 23 96
-        C29 119 65 109 72 139
-        C44 137 17 156 8 184
-        C44 174 75 157 91 129Z"
-        fill="#e8d4bd"
-        stroke="#c5a987"
-        stroke-width="2"/>
+      <path d="M94 83
+        C58 48 22 60 25 91
+        C28 117 63 109 70 139
+        C49 139 27 154 15 179
+        C48 174 78 151 92 127Z"
+        fill="#c9d9e8" stroke="#8faac5" stroke-width="2"/>
 
-      <path d="M88 91 C52 75 40 97 31 115"
-        fill="none"
-        stroke="#f8e9d8"
-        stroke-width="3"
-        opacity=".8"/>
+      <path d="M85 91 C55 77 40 98 33 116"
+        fill="none" stroke="#e8f3ff" stroke-width="2"
+        opacity=".65"/>
     </g>
 
     <!-- Suit body -->
-    <path d="M82 155 Q105 140 130 156
-      L154 218 Q150 243 132 250
-      L77 240 Q58 220 66 196Z"
-      fill="#e9dfd0"
-      stroke="#b99b80"
-      stroke-width="2"/>
+    <path d="M78 150 Q108 137 135 154
+      L157 218 Q154 242 133 249
+      L76 239 Q57 220 65 192Z"
+      fill="#e2eaf0" stroke="#9eb4c8" stroke-width="2"/>
 
-    <!-- Hijab neck -->
-    <path d="M81 105 Q104 127 130 105
-      L136 165 Q112 184 76 157Z"
-      fill="#d6b99d"
-      stroke="#ad9079"
-      stroke-width="2"/>
+    <!-- Neck and hijab -->
+    <path d="M83 108 Q109 130 135 106
+      L139 164 Q111 183 77 158Z"
+      fill="#b7cadd" stroke="#8faac5" stroke-width="2"/>
 
     <!-- Face -->
-    <path d="M78 65 Q78 34 108 31
-      Q139 37 138 72
-      Q136 111 109 120
-      Q82 111 78 65Z"
-      fill="#dcae91"/>
+    <path d="M79 67 Q78 34 109 31
+      Q139 34 140 69
+      Q138 110 109 120
+      Q82 110 79 67Z"
+      fill="#d7b8a8"/>
 
-    <!-- Hijab framing face -->
-    <path d="M70 77 Q61 21 108 20
-      Q158 19 148 84
-      L137 111 Q135 76 126 59
-      Q105 79 79 67
-      L79 105Z"
-      fill="#f0e3d2"
-      stroke="#c8ad92"
-      stroke-width="3"/>
+    <!-- Hijab frame -->
+    <path d="M69 79 Q60 22 109 20
+      Q157 20 149 82
+      L137 111 Q135 75 126 58
+      Q105 78 79 67 L79 107Z"
+      fill="#dce8f2" stroke="#a8bed1" stroke-width="3"/>
 
     <!-- Closed eyes -->
     <path d="M89 83 Q96 90 103 83"
-      fill="none"
-      stroke="#59413d"
-      stroke-width="2"
+      fill="none" stroke="#66565a" stroke-width="2"
       stroke-linecap="round"/>
 
     <path d="M115 83 Q122 90 129 83"
-      fill="none"
-      stroke="#59413d"
-      stroke-width="2"
+      fill="none" stroke="#66565a" stroke-width="2"
       stroke-linecap="round"/>
 
-    <!-- Right arm -->
-    <path d="M132 166 Q156 164 167 136
-      L179 119 Q190 111 195 123
-      Q191 143 179 165
-      Q166 194 146 193Z"
-      fill="#e9dfd0"
-      stroke="#b99b80"
-      stroke-width="2"/>
+    <!-- Left arm -->
+    <path d="M72 165 Q47 175 41 201
+      L33 220 Q27 229 19 220
+      Q18 205 35 178 Q49 151 70 148Z"
+      fill="#e2eaf0" stroke="#9eb4c8" stroke-width="2"/>
+
+    <!-- Right arm holding helmet -->
+    <path d="M135 162 Q158 160 174 133
+      L184 120 Q193 111 200 123
+      Q197 145 181 165
+      Q164 193 145 192Z"
+      fill="#e2eaf0" stroke="#9eb4c8" stroke-width="2"/>
 
     <!-- Glove -->
-    <path d="M178 121 Q187 106 198 117
-      L205 128 Q201 143 186 143Z"
-      fill="#d7c7b5"/>
-
-    <!-- Other arm -->
-    <path d="M72 169 Q47 177 41 202
-      L34 221 Q27 229 19 220
-      Q18 205 35 179
-      Q48 153 69 149Z"
-      fill="#e9dfd0"
-      stroke="#b99b80"
-      stroke-width="2"/>
+    <path d="M181 121 Q190 107 201 118
+      L209 130 Q204 144 188 144Z"
+      fill="#b7cadd" stroke="#8faac5" stroke-width="1.5"/>
 
     <!-- Legs -->
-    <path d="M79 233 L75 275 Q77 290 93 291
-      L106 245Z"
-      fill="#d8cbb9"
-      stroke="#b99b80"
-      stroke-width="2"/>
+    <path d="M79 235 L75 272 Q77 287 94 290
+      L107 245Z"
+      fill="#d2dfe9" stroke="#9eb4c8" stroke-width="2"/>
 
-    <path d="M115 246 L129 280 Q140 291 151 279
+    <path d="M115 245 L130 278 Q140 291 151 279
       L137 234Z"
-      fill="#e9dfd0"
-      stroke="#b99b80"
-      stroke-width="2"/>
+      fill="#e2eaf0" stroke="#9eb4c8" stroke-width="2"/>
 
     <!-- Boots -->
-    <path d="M76 271 Q62 286 72 296
+    <path d="M76 270 Q62 286 72 296
       L104 298 Q111 289 96 278Z"
-      fill="#bba38e"/>
+      fill="#829bb4"/>
 
     <path d="M127 274 Q127 293 143 298
       L161 291 Q165 279 148 274Z"
-      fill="#bba38e"/>
+      fill="#829bb4"/>
 
     <!-- Suit details -->
-    <circle cx="109" cy="191" r="12" fill="#b88e80"/>
-    <circle cx="109" cy="191" r="7" fill="#e9dfd0"/>
+    <circle cx="109" cy="191" r="12" fill="#789dbd"/>
+    <circle cx="109" cy="191" r="7" fill="#dce8f2"/>
 
     <path d="M80 214 L137 214"
-      stroke="#c1a58b"
-      stroke-width="2"/>
+      stroke="#a6bacd" stroke-width="2"/>
 
-    <!-- Separate helmet -->
-    <circle cx="195" cy="87" r="22"
-      fill="#b6c9cc"
-      fill-opacity=".15"
-      stroke="#d9c5a4"
-      stroke-width="3"/>
+    <!-- Helmet near hand -->
+    <circle cx="202" cy="91" r="23"
+      fill="#9bcce5" fill-opacity=".16"
+      stroke="#c8e5f5" stroke-width="3"/>
 
-    <circle cx="195" cy="87" r="16"
-      fill="#9bcbd0"
-      fill-opacity=".10"
-      stroke="#a9c5c7"
-      stroke-width="1.5"/>
+    <circle cx="202" cy="91" r="16"
+      fill="#8fc5e4" fill-opacity=".12"
+      stroke="#9bcce5" stroke-width="1.5"/>
 
-    <path d="M183 76 Q195 64 207 76"
-      fill="none"
-      stroke="#f5ead9"
-      stroke-width="2"
+    <path d="M190 79 Q202 68 214 80"
+      fill="none" stroke="#eaf4ff" stroke-width="2"
       opacity=".8"/>
 
   </svg>
-
-  <!-- Name -->
 
   <div class="intro-content">
 
@@ -732,7 +619,7 @@ footer {
     </div>
 
     <div class="loading-text">
-      GATHERING SIGNALS...
+      EXPLORING THE UNIVERSE...
     </div>
 
   </div>
@@ -744,7 +631,6 @@ footer {
 
   <nav>
     <div class="logo">MNAR SAAD</div>
-
     <div>
       <a href="#about">About</a>
       <a href="#research">Research</a>
@@ -819,15 +705,13 @@ footer {
 
 <script>
 window.addEventListener("load", () => {
-
   const intro = document.getElementById("intro");
   const website = document.getElementById("website");
 
   setTimeout(() => {
     intro.classList.add("done");
     website.classList.add("visible");
-  }, 7200);
-
+  }, 5000);
 });
 </script>
 
