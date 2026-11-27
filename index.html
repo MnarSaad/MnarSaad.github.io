@@ -349,30 +349,26 @@ body {
 
 /* Star / light beam crossing the name and flaring at the end */
 
+/* Star crossing the name and flaring brightly at the end */
+
 .name-wrap::after {
-  content: "";
+  content: "✦";
   position: absolute;
   top: 50%;
-  left: -18%;
-  width: 46px;
-  height: 46px;
-  transform: translate(-120%, -50%) scale(0.75);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(225, 238, 255, 0.9) 22%,
-      rgba(145, 191, 255, 0.45) 50%,
-      transparent 75%);
-  box-shadow:
-    0 0 18px 4px rgba(255, 255, 255, 0.85),
-    0 0 38px 10px rgba(145, 191, 255, 0.55);
+  left: -12%;
+  transform: translate(-120%, -50%) scale(0.7) rotate(0deg);
+  font-size: 32px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow:
+    0 0 10px #ffffff,
+    0 0 22px #c8deff,
+    0 0 40px #8fb4ff;
   mix-blend-mode: screen;
   opacity: 0;
   pointer-events: none;
   animation: nameLight 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
 }
-
 @keyframes nameAppear {
   to {
     opacity: 1;
@@ -382,37 +378,39 @@ body {
 
 @keyframes nameLight {
   0% {
-    opacity: 0.2;
-    transform: translate(-140%, -50%) scale(0.65);
-    box-shadow:
-      0 0 10px 2px rgba(200, 220, 255, 0.5),
-      0 0 20px 4px rgba(130, 165, 255, 0.3);
+    opacity: 0.25;
+    transform: translate(-130%, -50%) scale(0.65) rotate(-15deg);
+    text-shadow:
+      0 0 8px #ffffff,
+      0 0 18px #b8d4ff;
   }
   20% {
-    opacity: 0.95;
-    transform: translate(-20%, -50%) scale(0.95);
+    opacity: 1;
+    transform: translate(-15%, -50%) scale(0.95) rotate(10deg);
   }
   82% {
     opacity: 1;
-    transform: translate(260%, -50%) scale(1.15);
-    box-shadow:
-      0 0 22px 6px rgba(255, 255, 255, 0.95),
-      0 0 45px 14px rgba(145, 191, 255, 0.65);
+    transform: translate(265%, -50%) scale(1.15) rotate(45deg);
+    text-shadow:
+      0 0 14px #ffffff,
+      0 0 28px #cfe2ff,
+      0 0 50px #91bfff;
   }
   92% {
+    /* Bright star flare right at the end */
     opacity: 1;
-    transform: translate(295%, -50%) scale(2.1);
-    box-shadow:
-      0 0 35px 12px rgba(255, 255, 255, 1),
-      0 0 75px 28px rgba(175, 208, 255, 0.9),
-      0 0 110px 42px rgba(120, 155, 255, 0.55);
+    transform: translate(295%, -50%) scale(2.1) rotate(90deg);
+    text-shadow:
+      0 0 18px #ffffff,
+      0 0 38px #ffffff,
+      0 0 75px #cfe2ff,
+      0 0 115px #8fb4ff;
   }
   100% {
     opacity: 0;
-    transform: translate(315%, -50%) scale(2.5);
-    box-shadow:
-      0 0 10px 2px rgba(255, 255, 255, 0),
-      0 0 20px 5px rgba(145, 191, 255, 0);
+    transform: translate(315%, -50%) scale(2.5) rotate(110deg);
+    text-shadow:
+      0 0 0px transparent;
   }
 }
 
