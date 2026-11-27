@@ -892,7 +892,7 @@ footer {
 
       <div class="loading-text">
         <span>ENTERING MY UNIVERSE</span>
-        <span>100%</span>
+        <span id="loading-percent">0%</span>
       </div>
     </div>
 
@@ -1150,14 +1150,26 @@ footer {
 <script>
 const intro = document.getElementById("intro");
 const site = document.getElementById("site");
-
-/* Loading and light sweep share a 3-second timeline */
+const percentEl = document.getElementById("loading-percent");
 
 window.addEventListener("load", () => {
-  setTimeout(() => {
-    intro.classList.add("hide");
-    site.classList.add("visible");
-  }, 3000);
+  const duration = 3000;
+  const startTime = performance.now();
+
+  function updateCounter(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    percentEl.textContent = Math.floor(progress * 100) + "%";
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter);
+    } else {
+      intro.classList.add("hide");
+      site.classList.add("visible");
+    }
+  }
+
+  requestAnimationFrame(updateCounter);
 });
 </script>
 
